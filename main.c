@@ -218,18 +218,18 @@ void lru() {
                             far_list[k] = j;
                             break;
                         } 
-                        far_list[k]=-1;
+                        far_list[k]=100;
                     }
                 }
-                int max = far_list[0], maxcnt=0;
+                int min = far_list[0], mincnt=0;
                 
                 for(k = 0; k < frame_cnt; k++){
-                    if (max < far_list[k]){ max = far_list[k]; maxcnt=k;}
-                    // printf("%d ",far_list[k]);
+                    if (min > far_list[k]){ min = far_list[k]; mincnt=k;}
+                    printf("%d ",far_list[k]);
                 }
 
-                // printf("%d가 젤 멀리 있음\n",frame_list[maxcnt]);
-                frame_list[maxcnt] = ref_list[i];
+                printf("%d값이 제일 작음\n",frame_list[mincnt]);
+                frame_list[mincnt] = ref_list[i];
 
             } else {
                 frame_list[index++] = ref_list[i];

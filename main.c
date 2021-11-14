@@ -31,7 +31,7 @@ char ref_string[BUFFER_SIZE];
 int main(void) {
     input_file();
     for (int i = 0; i < 4; i++) {
-        printf("\n\n============================================================ ");
+        printf("\n\n==========================================================\n");
         printf("Used Method : ");
         switch(i) {
             case OPT :

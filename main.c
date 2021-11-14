@@ -117,7 +117,7 @@ void opt() {
                 for(k = 0; k < frame_cnt; k++) {
                     for(j = i+1; j < ref_cnt; j++) {
                         if(frame_list[k] == ref_list[j]){
-                            far_list[k] = i;
+                            far_list[k] = j;
                             break;
                         } 
                     }

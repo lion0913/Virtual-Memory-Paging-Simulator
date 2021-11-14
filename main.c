@@ -115,6 +115,7 @@ void opt() {
         //     frame_list[index++] = ref_list[i];
         //     fault_cnt++;
         // }
+        if(is_fault) {
 
         if (index == frame_cnt) { //프레임이 꽉찬경우(미래에 가장 덜 호출될 frame out)
             for(k = 0; k < frame_cnt; k++) {
@@ -141,6 +142,7 @@ void opt() {
         if (is_fault)
             printf("F");
         printf("\n");
+        }
 
     }
     printf("Number of page faults: %d times\n", fault_cnt);

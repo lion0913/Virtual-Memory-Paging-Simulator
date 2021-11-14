@@ -125,7 +125,7 @@ void opt() {
                 for(k = 0;k<frame_cnt;k++){
                     if (max < far_list[k]){ max = far_list[k]; maxcnt=k;}
                 }
-                printf("%d가 젤 멀리 있음\n",frame_list[maxcnt])
+                printf("%d가 젤 멀리 있음\n",frame_list[maxcnt]);
                 frame_list[maxcnt] = ref_list[i];
 
             } else {

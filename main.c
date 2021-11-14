@@ -104,6 +104,8 @@ void fifo() {
     int i = 0, j = 0, index = 0;
     int fault_cnt = 0;
     int frame_list[30] = {-1};
+
+    memset(frame_list, -1, sizeof(frame_list));
     
     bool is_fault = true;
 

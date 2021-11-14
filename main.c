@@ -31,6 +31,7 @@ char ref_string[BUFFER_SIZE];
 int main(void) {
     input_file();
     for (int i = 0; i < 4; i++) {
+        printf("\n\n============================================================ ");
         printf("Used Method : ");
         switch(i) {
             case OPT :
@@ -91,7 +92,6 @@ void print_header() {
 }
 
 void opt() {
-    printf("opt\n");
     int i = 0, j = 0, k = 0,index = 0;
     int fault_cnt = 0;
     int frame_list[30] = {-1};
@@ -145,7 +145,7 @@ void opt() {
         printf("\n");
         }
 
-    printf("Number of page faults: %d times\n\n\n==================================", fault_cnt);
+    printf("Number of page faults: %d times\n", fault_cnt);
 
 }
 
@@ -189,7 +189,7 @@ void fifo() {
         printf("\n");
 
     }
-    printf("Number of page faults: %d times\n\n\n==================================", fault_cnt);
+    printf("Number of page faults: %d times\n", fault_cnt);
 
 }
 

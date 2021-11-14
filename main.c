@@ -99,12 +99,12 @@ void input_file() {
 }
 
 void opt() {
-    print("opt\n");
+    printf("opt\n");
 
 }
 
 void fifo() {
-    print("fifo\n");
+    printf("fifo\n");
 
     int i = 0;
     for(i = 0; i < frame_cnt; i++) {
@@ -114,10 +114,10 @@ void fifo() {
 }
 
 void lru() {
-    print("lru\n");
+    printf("lru\n");
 
 }
 
 void second_chance() {
-    print("second chance\n");
+    printf("second chance\n");
 }

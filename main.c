@@ -110,7 +110,7 @@ void fifo() {
     for(i = 0; i < ref_cnt; i++) {
         is_fault = true;
         for(j = 0; j < frame_cnt; j++) {
-            if(frame_cnt[j] == ref_list[i]) {
+            if(frame_list[j] == ref_list[i]) {
                 is_fault = false;
                 break;
             }

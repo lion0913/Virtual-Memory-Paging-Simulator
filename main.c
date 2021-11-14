@@ -10,20 +10,43 @@
 
 #define BUFFER_SIZE 256
 #define MAX_REF 30
+#define OPT 0
+#define FIFO 1
+#define LRU 2
+#define SC 3
 
 void input_file();
+void print_header(int cnt); //used Method ~ 테이블 헤더까지 출력
+char buffer[BUFFER_SIZE];
 
 int frame_cnt = 0;
 int ref_list[MAX_REF] = {0};
 
 int main(void) {
     input_file();
-
+    printf("Used Method : ");
+    for (int i = 0; i < 4; i++) {
+        switch(i) {
+            case OPT :
+                print("OPT\n");
+                break;
+            case FIFO :
+                print("FIFO\n");
+                break;
+            case LRU : 
+                print("LRU\n");
+                break;
+            case SC :
+                print("Second-Chance\n");
+                break;
+        }
+        printf("page reference string : %s\n",buffer);
+    }
 }
 
 void input_file() {
     FILE *fp;
-    char buffer[BUFFER_SIZE];
+    
 
     printf("file name > ");
     scanf("%s", buffer);
@@ -44,6 +67,9 @@ void input_file() {
     while (token != NULL) {
         ref_list[i++] = atoi(token);
         token = strtok(NULL, " ");
-        printf("%d번째 값 : %d\n",i,token);
     }
+}
+
+void print_header(void) {
+
 }

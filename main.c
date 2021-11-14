@@ -113,7 +113,6 @@ void opt() {
 
         if(is_fault) {
             if (index == frame_cnt) { //프레임이 꽉찬경우(미래에 가장 덜 호출될 frame out)
-                int max = 0, maxcnt=0;
                 for(k = 0; k < frame_cnt; k++) {
                     for(j = i+1; j < ref_cnt; j++) {
                         if(frame_list[k] == ref_list[j]){
@@ -122,6 +121,7 @@ void opt() {
                         } 
                     }
                 }
+                int max = far_list[0], maxcnt=0;
                 
                 for(k = 0; k < frame_cnt; k++){
                     if (max < far_list[k]){ max = far_list[k]; maxcnt=k;}

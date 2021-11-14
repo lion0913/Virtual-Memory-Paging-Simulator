@@ -6,6 +6,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/syscall.h>
+#include <stdbool.h>
 
 
 #define BUFFER_SIZE 256
@@ -100,11 +101,11 @@ void opt() {
 void fifo() {
     printf("fifo\n");
 
-    int i = 0, index = 0;
+    int i = 0, j = 0, index = 0;
     int fault_cnt = 0;
     int frame_list[30] = {-1};
     
-     bool is_fault = true;
+    bool is_fault = true;
 
     for(i = 0; i < ref_cnt; i++) {
         is_fault = true;
@@ -120,8 +121,8 @@ void fifo() {
             fault_cnt++;
         }
 
-        if (last_idx == frame_cnt)
-            last_idx = 0;
+        if (index == frame_cnt)
+            index = 0;
 
         printf("%d\t\t", i+1);
         for (j = 0; j < frame_cnt; j++)

@@ -51,7 +51,7 @@ int main(void) {
             case SC :
                 printf("Second-Chance\n");
                 print_header();
-                sc();
+                second_chance();
                 break;
         }
     }

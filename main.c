@@ -40,7 +40,12 @@ int main(void) {
                 break;
         }
         printf("page reference string : %s\n", ref_string);
-    }
+        printf("\n\tframe");
+        for (int i = 0; i < frame_cnt; i++)
+            printf("\t%d", i + 1);
+        printf("\tpage fault\n");
+        printf("time\n");
+        }
 }
 
 void input_file() {

@@ -122,7 +122,7 @@ void opt() {
                 for(k = 0;k<frame_cnt;k++){
                     if (max < far_list[k]){ max = far_list[k]; maxcnt=k;}
                 }
-                frame_list[k] = ref_list[i];
+                frame_list[maxcnt] = ref_list[i];
 
             } else {
                 frame_list[index++] = ref_list[i];

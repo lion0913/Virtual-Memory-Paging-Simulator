@@ -27,16 +27,16 @@ int main(void) {
     for (int i = 0; i < 4; i++) {
         switch(i) {
             case OPT :
-                print("OPT\n");
+                printf("OPT\n");
                 break;
             case FIFO :
-                print("FIFO\n");
+                printf("FIFO\n");
                 break;
             case LRU : 
-                print("LRU\n");
+                printf("LRU\n");
                 break;
             case SC :
-                print("Second-Chance\n");
+                printf("Second-Chance\n");
                 break;
         }
         printf("page reference string : %s\n",buffer);

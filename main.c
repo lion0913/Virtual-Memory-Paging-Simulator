@@ -71,8 +71,6 @@ void input_file() {
     }
 
     fscanf(fp, "%d\n%[^\n]", &frame_cnt, buffer);
-    printf("frame_cnt : %d\n",frame_cnt);
-    printf("buffer :%s\n",buffer);
 
     strcpy(ref_string, buffer);
 
@@ -81,7 +79,6 @@ void input_file() {
         ref_list[ref_cnt++] = atoi(token);
         token = strtok(NULL, " ");
     }
-    printf("count : %d\n",ref_cnt);
 }
 
 void print_header() {

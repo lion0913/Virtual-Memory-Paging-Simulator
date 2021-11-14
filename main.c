@@ -132,8 +132,18 @@ void opt() {
             frame_list[index++] = ref_list[i];
         }
         fault_cnt++;
-        
+        printf("%d\t\t", i+1);
+        for (j = 0; j < frame_cnt; j++)
+            if (frame_list[j] != -1)
+                printf("%d\t", frame_list[j]);
+            else
+                printf("\t");
+        if (is_fault)
+            printf("F");
+        printf("\n");
+
     }
+    printf("Number of page faults: %d times\n", fault_cnt);
 
 }
 

@@ -31,7 +31,7 @@ void input_file() {
         exit(1);
     }
 
-    fscanf(fp, "%d\n%[^\n]", frame_cnt, buffer);
-    printf("frame_cnt : "+frame_cnt);
-    printf("buffer :"+buffer);
+    fscanf(fp, "%d\n%[^\n]", &frame_cnt, buffer);
+    printf("frame_cnt : %d",frame_cnt);
+    printf("buffer :%s",buffer);
 }

@@ -16,6 +16,7 @@
 #define SC 3
 
 void input_file();
+void print_header();
 void opt();
 void fifo();
 void lru();
@@ -33,42 +34,26 @@ int main(void) {
         switch(i) {
             case OPT :
                 printf("OPT\n");
-                break;
-            case FIFO :
-                printf("FIFO\n");
-                break;
-            case LRU : 
-                printf("LRU\n");
-                break;
-            case SC :
-                printf("Second-Chance\n");
-                break;
-        }
-        printf("page reference string : %s\n", ref_string);
-        printf("\n\tframe");
-        for (int i = 0; i < frame_cnt; i++)
-            printf("\t%d", i + 1);
-        printf("\tpage fault\n");
-        printf("time\n");
-    }
-
-    for (int j = 0; j < 4; j++) {
-        switch(j) {
-            case OPT :
+                print_header();
                 opt();
                 break;
             case FIFO :
+                printf("FIFO\n");
+                print_header();
                 fifo();
                 break;
             case LRU : 
+                printf("LRU\n");
+                print_header();
                 lru();
                 break;
             case SC :
-                second_chance();
+                printf("Second-Chance\n");
+                print_header();
+                sc();
                 break;
         }
     }
-
 }
 
 void input_file() {
@@ -98,6 +83,15 @@ void input_file() {
     printf("count : %d\n",ref_cnt);
 }
 
+void print_header() {
+    printf("page reference string : %s\n", ref_string);
+    printf("\n\tframe");
+    for (int i = 0; i < frame_cnt; i++)
+        printf("\t%d", i + 1);
+    printf("\tpage fault\n");
+    printf("time\n");
+}
+
 void opt() {
     printf("opt\n");
 
@@ -106,10 +100,41 @@ void opt() {
 void fifo() {
     printf("fifo\n");
 
-    int i = 0;
-    for(i = 0; i < frame_cnt; i++) {
+    int i = 0, index = 0;
+    int fault_cnt = 0;
+    int frame_list[30] = {-1};
+    
+     bool is_fault = true;
+
+    for(i = 0; i < ref_cnt; i++) {
+        is_fault = true;
+        for(j = 0; j < frame_cnt; j++) {
+            if(frame_cnt[j] == ref_list[i]) {
+                is_fault = false;
+                break;
+            }
+        }
+
+        if(is_fault) {
+            frame_list[index++] = ref_list[i];
+            fault_cnt++;
+        }
+
+        if (last_idx == frame_cnt)
+            last_idx = 0;
+
+        printf("%d\t\t", i+1);
+        for (j = 0; j < frame_cnt; j++)
+            if (frame_list[j] != -1)
+                printf("%d\t", frame_list[j]);
+            else
+                printf("\t");
+        if (is_fault)
+            printf("F");
+        printf("\n");
 
     }
+    printf("Number of page faults: %d times\n", fault_cnt);
 
 }
 

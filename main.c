@@ -113,15 +113,19 @@ void opt() {
 
         if(is_fault) {
             if (index == frame_cnt) { //프레임이 꽉찬경우(미래에 가장 덜 호출될 frame out)
+                int max = 0, maxcnt=0;
                 for(k = 0; k < frame_cnt; k++) {
                     for(j = i; j < ref_cnt; j++) {
-                        if(frame_list[k] == ref_list[j]) far_list[k] = i;
+                        if(frame_list[k] == ref_list[j]){
+                            far_list[k] = i;
+                        } 
                     }
                 }
-                int max = 0, maxcnt=0;
+                
                 for(k = 0;k<frame_cnt;k++){
                     if (max < far_list[k]){ max = far_list[k]; maxcnt=k;}
                 }
+                printf("%d가 젤 멀리 있음\n",frame_list[maxcnt])
                 frame_list[maxcnt] = ref_list[i];
 
             } else {

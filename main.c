@@ -118,6 +118,7 @@ void opt() {
                     for(j = i; j < ref_cnt; j++) {
                         if(frame_list[k] == ref_list[j]){
                             far_list[k] = i;
+                            break;
                         } 
                     }
                 }

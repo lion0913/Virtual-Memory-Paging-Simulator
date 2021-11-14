@@ -194,7 +194,60 @@ void fifo() {
 }
 
 void lru() {
-    printf("lru\n");
+        int i = 0, j = 0, k = 0,index = 0;
+    int fault_cnt = 0;
+    int frame_list[30] = {-1};
+    int far_list[30] = {0, };
+
+    memset(frame_list, -1, sizeof(frame_list));
+    bool is_fault = true;
+    for(i = 0; i < ref_cnt; i++) {
+        is_fault = true;
+        for(j = 0; j < frame_cnt; j++) {
+            if(frame_list[j] == ref_list[i]) {
+                is_fault = false;
+                break;
+            }
+        }
+
+        if(is_fault) {
+            if (index == frame_cnt) { //프레임이 꽉찬경우(미래에 가장 덜 호출될 frame out)
+                for(k = 0; k < frame_cnt; k++) {
+                    for(j = i-1; j > 0; j--) {
+                        if(frame_list[k] == ref_list[j]){
+                            far_list[k] = j;
+                            break;
+                        } 
+                        far_list[k]=-1;
+                    }
+                }
+                int max = far_list[0], maxcnt=0;
+                
+                for(k = 0; k < frame_cnt; k++){
+                    if (max < far_list[k]){ max = far_list[k]; maxcnt=k;}
+                    // printf("%d ",far_list[k]);
+                }
+
+                // printf("%d가 젤 멀리 있음\n",frame_list[maxcnt]);
+                frame_list[maxcnt] = ref_list[i];
+
+            } else {
+                frame_list[index++] = ref_list[i];
+            }
+            fault_cnt++;
+        }
+        printf("%d\t\t", i+1);
+        for (j = 0; j < frame_cnt; j++)
+            if (frame_list[j] != -1)
+                printf("%d\t", frame_list[j]);
+            else
+                printf("\t");
+        if (is_fault)
+            printf("F");
+        printf("\n");
+        }
+
+    printf("Number of page faults: %d times\n", fault_cnt);
 
 }
 

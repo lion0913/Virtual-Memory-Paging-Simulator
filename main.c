@@ -16,7 +16,6 @@
 #define SC 3
 
 void input_file();
-void print_header(int cnt); //used Method ~ 테이블 헤더까지 출력
 char buffer[BUFFER_SIZE];
 
 int frame_cnt = 0;
@@ -68,8 +67,4 @@ void input_file() {
         ref_list[i++] = atoi(token);
         token = strtok(NULL, " ");
     }
-}
-
-void print_header(void) {
-
 }

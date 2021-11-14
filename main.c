@@ -16,15 +16,15 @@
 #define SC 3
 
 void input_file();
-char buffer[BUFFER_SIZE];
 
 int frame_cnt = 0;
 int ref_list[MAX_REF] = {0};
+char ref_string[BUFFER_SIZE];
 
 int main(void) {
     input_file();
-    printf("Used Method : ");
     for (int i = 0; i < 4; i++) {
+        printf("Used Method : ");
         switch(i) {
             case OPT :
                 printf("OPT\n");
@@ -39,13 +39,13 @@ int main(void) {
                 printf("Second-Chance\n");
                 break;
         }
-        printf("page reference string : %s\n",buffer);
+        printf("page reference string : %s\n", ref_string);
     }
 }
 
 void input_file() {
     FILE *fp;
-    
+    char buffer[BUFFER_SIZE];
 
     printf("file name > ");
     scanf("%s", buffer);
@@ -58,6 +58,8 @@ void input_file() {
     fscanf(fp, "%d\n%[^\n]", &frame_cnt, buffer);
     printf("frame_cnt : %d\n",frame_cnt);
     printf("buffer :%s\n",buffer);
+
+    strcpy(ref_string, buffer);
 
     char *token;
     int i = 0;

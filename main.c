@@ -16,8 +16,13 @@
 #define SC 3
 
 void input_file();
+void opt();
+void fifo();
+void lru();
+void second_chance();
 
 int frame_cnt = 0;
+int ref_cnt = 0;
 int ref_list[MAX_REF] = {0};
 char ref_string[BUFFER_SIZE];
 
@@ -45,17 +50,36 @@ int main(void) {
             printf("\t%d", i + 1);
         printf("\tpage fault\n");
         printf("time\n");
+    }
+
+    for (int j = 0; j < 4; j++) {
+        switch(j) {
+            case OPT :
+                opt();
+                break;
+            case FIFO :
+                fifo();
+                break;
+            case LRU : 
+                lru();
+                break;
+            case SC :
+                second_chance();
+                break;
         }
+    }
+
 }
 
 void input_file() {
     FILE *fp;
     char buffer[BUFFER_SIZE];
+    char *token;
 
     printf("file name > ");
     scanf("%s", buffer);
 
-    if ((fp = fopen(buffer, "r")) == NULL) {
+    if ((fp = fopen(buffer, "r")) == NULL) { //파일 오픈
         fprintf(stderr, "fopen error for %s\n", buffer);
         exit(1);
     }
@@ -66,12 +90,34 @@ void input_file() {
 
     strcpy(ref_string, buffer);
 
-    char *token;
-    int i = 0;
-
     token = strtok(buffer, " ");
     while (token != NULL) {
-        ref_list[i++] = atoi(token);
+        ref_list[ref_cnt++] = atoi(token);
         token = strtok(NULL, " ");
     }
+    printf("count : %d\n",ref_cnt);
+}
+
+void opt() {
+    print("opt\n");
+
+}
+
+void fifo() {
+    print("fifo\n");
+
+    int i = 0;
+    for(i = 0; i < frame_cnt; i++) {
+
+    }
+
+}
+
+void lru() {
+    print("lru\n");
+
+}
+
+void second_chance() {
+    print("second chance\n");
 }

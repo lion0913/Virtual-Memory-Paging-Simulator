@@ -148,7 +148,7 @@ void opt() {
         printf("\n");
         }
 
-    printf("Number of page faults: %d times\n", fault_cnt);
+    printf("Number of page faults: %d times\n\n\n==================================", fault_cnt);
 
 }
 
@@ -192,7 +192,7 @@ void fifo() {
         printf("\n");
 
     }
-    printf("Number of page faults: %d times\n", fault_cnt);
+    printf("Number of page faults: %d times\n\n\n==================================", fault_cnt);
 
 }
 

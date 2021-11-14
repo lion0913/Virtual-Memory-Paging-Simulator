@@ -98,7 +98,7 @@ void opt() {
     int i = 0, j = 0, k = 0,index = 0;
     int fault_cnt = 0;
     int frame_list[30] = {-1};
-    int far_list[30] = {100,};
+    int far_list[30] = {0, };
 
     memset(frame_list, -1, sizeof(frame_list));
     bool is_fault = true;
@@ -119,6 +119,7 @@ void opt() {
                             far_list[k] = j;
                             break;
                         } 
+                        far_list[k]=100;
                     }
                 }
                 int max = far_list[0], maxcnt=0;

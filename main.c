@@ -194,7 +194,7 @@ void fifo() {
 }
 
 void lru() {
-        int i = 0, j = 0, k = 0,index = 0;
+    int i = 0, j = 0, k = 0,index = 0;
     int fault_cnt = 0;
     int frame_list[30] = {-1};
     int far_list[30] = {0, };
@@ -211,7 +211,7 @@ void lru() {
         }
 
         if(is_fault) {
-            if (index == frame_cnt) { //프레임이 꽉찬경우(미래에 가장 덜 호출될 frame out)
+            if (index == frame_cnt) { //프레임이 꽉찬경우(최근에 가장 호출된 적이 없던 frame out)
                 for(k = 0; k < frame_cnt; k++) {
                     for(j = i-1; j > 0; j--) {
                         if(frame_list[k] == ref_list[j]){
@@ -225,10 +225,10 @@ void lru() {
                 
                 for(k = 0; k < frame_cnt; k++){
                     if (min > far_list[k]){ min = far_list[k]; mincnt=k;}
-                    printf("%d ",far_list[k]);
+                    // printf("%d ",far_list[k]);
                 }
 
-                printf("%d값이 제일 작음\n",frame_list[mincnt]);
+                // printf("%d값이 제일 작음\n",frame_list[mincnt]);
                 frame_list[mincnt] = ref_list[i];
 
             } else {
@@ -252,5 +252,50 @@ void lru() {
 }
 
 void second_chance() {
-    printf("second chance\n");
+    int i = 0, j = 0, k = 0,index = 0;
+    int fault_cnt = 0;
+    int frame_list[30] = {-1};
+    bool ref_bit_list[30] = {0, };
+
+    memset(frame_list, -1, sizeof(frame_list));
+    bool is_fault = true;
+
+    for(i = 0; i < ref_cnt; i++) {
+        for(j = 0; j < frame_cnt; j++) {
+            if(frame_list[j] == ref_list[i]) {
+                ref_bit_list[j] = 1;
+                is_fault = false;
+                break;
+            }
+        }
+
+        if(is_fault){
+            for(j = 0; j < frame_cnt; j++) {
+                if(frame_list[j] == ref_list[i]) {
+                    if(ref_bit_list[j] == 1){
+                        ref_bit_list[j] = 0;
+                        index++;
+                    } else {
+                        frame_list[index++] = ref_list[i];
+                    }
+                }
+                if (index == frame_cnt)
+                    index = 0;
+                
+                fault_cnt++;
+            }
+        }
+        printf("%d\t\t", i+1);
+        for (j = 0; j < frame_cnt; j++)
+            if (frame_list[j] != -1)
+                printf("%d\t", frame_list[j]);
+            else
+                printf("\t");
+        if (is_fault)
+            printf("F");
+        printf("\n");
+        
+    }
+
+    printf("Number of page faults: %d times\n", fault_cnt);
 }

@@ -261,6 +261,7 @@ void second_chance() {
     bool is_fault = true;
 
     for(i = 0; i < ref_cnt; i++) {
+        is_fault = true;
         for(j = 0; j < frame_cnt; j++) {
             if(frame_list[j] == ref_list[i]) {
                 ref_bit_list[j] = 1;

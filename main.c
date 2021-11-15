@@ -272,7 +272,7 @@ void second_chance() {
 
         if(is_fault){ //페이지 fault가 발생한 경우
             while(1) {
-                if(ref_bit_list[index] == 1) { //해당 bit reference값이 1인 경우 0으로 바꾸고 넘어감
+                if(ref_bit_list[index]) { //해당 bit reference값이 1인 경우 0으로 바꾸고 넘어감
                     printf("reference값이 1이니까 넘어간다\n");
                     ref_bit_list[index] = 0;
                     index++;

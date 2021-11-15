@@ -275,14 +275,18 @@ void second_chance() {
                     if(ref_bit_list[j] == 1){
                         ref_bit_list[j] = 0;
                         index++;
-                    } else {
-                        frame_list[index++] = ref_list[i];
                     }
+                    //  else {
+                    //     frame_list[index++] = ref_list[i];
+                    // }
                 }
+
+                frame_list[index++] = ref_list[i];
+                fault_cnt++;
+                
                 if (index == frame_cnt)
                     index = 0;
                 
-                fault_cnt++;
             }
         }
         printf("%d\t\t", i+1);

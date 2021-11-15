@@ -275,6 +275,7 @@ void second_chance() {
                     if(ref_bit_list[j] == 1){
                         ref_bit_list[j] = 0;
                         index++;
+                        break;
                     }
                     //  else {
                     //     frame_list[index++] = ref_list[i];

@@ -281,14 +281,13 @@ void second_chance() {
                     //  else {
                     //     frame_list[index++] = ref_list[i];
                     // }
+                    frame_list[index++] = ref_list[i];
+                    fault_cnt++;
+                
+                    if (index == frame_cnt)
+                        index = 0;
+                    break;
                 }
-
-                frame_list[index++] = ref_list[i];
-                fault_cnt++;
-                
-                if (index == frame_cnt)
-                    index = 0;
-                
             }
         }
         printf("%d\t\t", i+1);

@@ -262,7 +262,7 @@ void second_chance() {
 
     for(i = 0; i < ref_cnt; i++) {
         is_fault = true;
-        for(j = 0; j < frame_cnt; j++) {
+        for(j = 0; j < frame_cnt; j++) { //frame_list에 이미 있는경우 ref값 1로 만들고 멈춤
             if(frame_list[j] == ref_list[i]) {
                 ref_bit_list[j] = 1;
                 is_fault = false;
@@ -272,17 +272,19 @@ void second_chance() {
 
         if(is_fault){ //페이지 fault가 발생한 경우
             while(1) {
+                if (index == frame_cnt)
+                    index = 0;
+
                 if(ref_bit_list[index] == 1) { //해당 bit reference값이 1인 경우 0으로 바꾸고 넘어감
                     printf("reference값이 1이니까 넘어간다\n");
                     ref_bit_list[index] = 0;
                     index++;
                 } else { //0인경우 frame_list에 집어넣고 fault 카운트 개수 증가
+                    printf("reference값이 0이니까 %d번째 값 %d로 바꾸고 간다\n",index, ref_list[i]);
                     frame_list[index++] = ref_list[i];
                     fault_cnt++;
                     break;
                 }
-                if (index == frame_cnt)
-                    index = 0;
             }
         }
         printf("%d\t\t", i+1);

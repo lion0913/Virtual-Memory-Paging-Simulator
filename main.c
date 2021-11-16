@@ -276,11 +276,11 @@ void second_chance() {
                     index = 0;
 
                 if(ref_bit_list[index] == 1) { //해당 bit reference값이 1인 경우 0으로 바꾸고 넘어감
-                    printf("reference값이 1이니까 넘어간다\n");
+                    // printf("reference값이 1이니까 넘어간다\n");
                     ref_bit_list[index] = 0;
                     index++;
                 } else { //0인경우 frame_list에 집어넣고 fault 카운트 개수 증가
-                    printf("reference값이 0이니까 %d번째 값 %d로 바꾸고 간다\n",index, ref_list[i]);
+                    // printf("reference값이 0이니까 %d번째 값 %d로 바꾸고 간다\n",index, ref_list[i]);
                     frame_list[index++] = ref_list[i];
                     fault_cnt++;
                     break;

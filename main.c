@@ -123,10 +123,8 @@ void opt() {
                 
                 for(k = 0; k < frame_cnt; k++){
                     if (max < far_list[k]){ max = far_list[k]; maxcnt=k;}
-                    // printf("%d ",far_list[k]);
                 }
 
-                // printf("%d가 젤 멀리 있음\n",frame_list[maxcnt]);
                 frame_list[maxcnt] = ref_list[i];
 
             } else {
@@ -150,7 +148,6 @@ void opt() {
 }
 
 void fifo() {
-    printf("ref_count : %d\n",ref_cnt);
 
     int i = 0, j = 0, index = 0;
     int fault_cnt = 0;
@@ -224,10 +221,8 @@ void lru() {
                 
                 for(k = 0; k < frame_cnt; k++){
                     if (min > far_list[k]){ min = far_list[k]; mincnt=k;}
-                    // printf("%d ",far_list[k]);
                 }
 
-                // printf("%d값이 제일 작음\n",frame_list[mincnt]);
                 frame_list[mincnt] = ref_list[i];
 
             } else {
@@ -275,11 +270,9 @@ void second_chance() {
                     index = 0;
 
                 if(ref_bit_list[index] == 1) { //해당 bit reference값이 1인 경우 0으로 바꾸고 넘어감
-                    // printf("reference값이 1이니까 넘어간다\n");
                     ref_bit_list[index] = 0;
                     index++;
                 } else { //0인경우 frame_list에 집어넣고 fault 카운트 개수 증가
-                    // printf("reference값이 0이니까 %d번째 값 %d로 바꾸고 간다\n",index, ref_list[i]);
                     frame_list[index++] = ref_list[i];
                     fault_cnt++;
                     break;

@@ -150,7 +150,6 @@ void opt() {
 }
 
 void fifo() {
-    printf("fifo\n");
     printf("ref_count : %d\n",ref_cnt);
 
     int i = 0, j = 0, index = 0;
